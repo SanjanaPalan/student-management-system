@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Management System</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎓 Student Management System</h1>
+
+<div class="dashboard">
+
+<div class="dash-card">
+<h2>{{ total_students }}</h2>
+<p>Total Students</p>
+</div>
+
+<div class="dash-card">
+<h2>{{ avg_attendance }}%</h2>
+<p>Avg Attendance</p>
+</div>
+
+</div>
+
+<a href="/add" class="btn">
+Add Student
+</a>
+
+<h2>Departments</h2>
+
+<div class="departments">
+
+<a href="/?department=CSE" class="dept-card">
+💻 CSE
+</a>
+
+<a href="/?department=AIML" class="dept-card">
+🤖 AIML
+</a>
+
+<a href="/?department=ECE" class="dept-card">
+📡 ECE
+</a>
+
+<a href="/?department=MECH" class="dept-card">
+⚙️ MECH
+</a>
+
+<a href="/?department=CIVIL" class="dept-card">
+🏗️ CIVIL
+</a>
+
+</div>
+
+<h2>Semesters</h2>
+
+<div class="semesters">
+
+{% for i in range(1,9) %}
+
+<a href="/?semester={{i}}" class="sem-card">
+
+Semester {{i}}
+
+</a>
+
+{% endfor %}
+
+</div>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Department</th>
+<th>Semester</th>
+<th>Email</th>
+<th>Attendance</th>
+<th>Action</th>
+</tr>
+
+{% for student in students %}
+
+<tr>
+
+<td>{{ student[0] }}</td>
+<td>{{ student[1] }}</td>
+<td>{{ student[2] }}</td>
+<td>{{ student[3] }}</td>
+<td>{{ student[4] }}</td>
+<td>{{ student[5] }}%</td>
+
+<td>
+
+<a href="/delete/{{ student[0] }}">
+Delete
+</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>
